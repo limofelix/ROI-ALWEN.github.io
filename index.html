@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fiber Connection ROI Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: auto;
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        function calculateROI() {
+            let numClients = parseInt(document.getElementById("numClients").value);
+            let distance = parseFloat(document.getElementById("distance").value);
+            let monthlyFee = parseFloat(document.getElementById("monthlyFee").value);
+            let fiberCostPerMeter = parseFloat(document.getElementById("fiberCostPerMeter").value);
+            let equipmentCost = parseFloat(document.getElementById("equipmentCost").value);
+            let laborCost = parseFloat(document.getElementById("laborCost").value);
+            let miscCost = parseFloat(document.getElementById("miscCost").value);
+            
+            let fiberCost = distance * fiberCostPerMeter;
+            let totalInstallCost = (fiberCost + equipmentCost + laborCost + miscCost) / numClients;
+            let revenue6Months = (monthlyFee * 6) * numClients;
+            let roi = revenue6Months / totalInstallCost;
+            
+            document.getElementById("installCost").innerText = totalInstallCost.toFixed(2);
+            document.getElementById("revenue").innerText = revenue6Months.toFixed(2);
+            document.getElementById("roi").innerText = roi.toFixed(2);
+            document.getElementById("eligible").innerText = roi >= 1 ? "YES" : "NO";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Fiber Connection ROI Calculator</h2>
+        <label>Number of Clients: <input type="number" id="numClients" value="1" min="1"></label><br>
+        <label>Distance (m): <input type="number" id="distance" value="500"></label><br>
+        <label>Monthly Fee (Ksh): <input type="number" id="monthlyFee" value="5000"></label><br>
+        <label>Fiber Cost per Meter (Ksh): <input type="number" id="fiberCostPerMeter" value="50"></label><br>
+        <label>Equipment Cost (Ksh): <input type="number" id="equipmentCost" value="5000"></label><br>
+        <label>Labor Cost (Ksh): <input type="number" id="laborCost" value="10000"></label><br>
+        <label>Miscellaneous Cost (Ksh): <input type="number" id="miscCost" value="5000"></label><br>
+        <button onclick="calculateROI()">Calculate ROI</button>
+        <h3>Results:</h3>
+        <p class="result">Total Installation Cost per Client: Ksh <span id="installCost">0</span></p>
+        <p class="result">Revenue (6 months): Ksh <span id="revenue">0</span></p>
+        <p class="result">ROI (6 months): <span id="roi">0</span></p>
+        <p class="result">Eligible for Connection: <span id="eligible">NO</span></p>
+    </div>
+</body>
+</html>
