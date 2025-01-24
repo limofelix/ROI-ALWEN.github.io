@@ -48,11 +48,11 @@
             
             let fiberCost = distance * fiberCostPerMeter;
             let totalInstallCost = (fiberCost + equipmentCost + laborCost + miscCost) / numClients;
-            let revenue6Months = (monthlyFee * 6) * numClients;
-            let roi = revenue6Months / totalInstallCost;
+            let revenue3Months = (monthlyFee * 3) * numClients;
+            let roi = revenue3Months / totalInstallCost;
             
             document.getElementById("installCost").innerText = totalInstallCost.toFixed(2);
-            document.getElementById("revenue").innerText = revenue6Months.toFixed(2);
+            document.getElementById("revenue").innerText = revenue3Months.toFixed(2);
             document.getElementById("roi").innerText = roi.toFixed(2);
             document.getElementById("eligible").innerText = roi >= 1 ? "YES" : "NO";
         }
@@ -71,8 +71,8 @@
         <button onclick="calculateROI()">Calculate ROI</button>
         <h3>Results:</h3>
         <p class="result">Total Installation Cost per Client: Ksh <span id="installCost">0</span></p>
-        <p class="result">Revenue (6 months): Ksh <span id="revenue">0</span></p>
-        <p class="result">ROI (6 months): <span id="roi">0</span></p>
+        <p class="result">Revenue (3 months): Ksh <span id="revenue">0</span></p>
+        <p class="result">ROI (3 months): <span id="roi">0</span></p>
         <p class="result">Eligible for Connection: <span id="eligible">NO</span></p>
     </div>
 </body>
